@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="author" content="AGBANYO Yawotsè Emile">
-  <title>AGBANYO Yawotsè Emile | Développeur Full Stack</title>
-  <meta name="description" content="Portfolio d'AGBANYO Yawotsè Emile (alias Eren-Geek), développeur full stack passionné">
+  <title>Eren-Geek | Développeur Full Stack</title>
+  <meta name="description" content="Portfolio d'AGBANYO Yawotsè Emile - Développeur Full Stack créateur de solutions web innovantes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,11 +16,25 @@
       darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            display: ['Space Mono', 'monospace'],
+          },
+          colors: {
+            primary: '#0F172A',
+            accent: '#FF6B35',
+            neon: '#00D9FF',
+            success: '#10B981',
+          },
           animation: {
-            'fade-in': 'fadeIn 1s ease-out',
+            'fade-in': 'fadeIn 0.8s ease-out',
             'slide-up': 'slideUp 0.8s ease-out',
-            'float': 'float 3s ease-in-out infinite',
-            'pulse-slow': 'pulse 5s infinite'
+            'float': 'float 4s ease-in-out infinite',
+            'glow': 'glow 3s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+            'code-flow': 'codeFlow 8s linear infinite',
+            'shimmer': 'shimmer 2s infinite',
           },
           keyframes: {
             fadeIn: {
@@ -25,189 +42,530 @@
               '100%': { opacity: '1' }
             },
             slideUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' }
             },
             float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            glow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(0, 217, 255, 0.5)' },
+              '50%': { boxShadow: '0 0 40px rgba(0, 217, 255, 0.8)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.8' }
+            },
+            codeFlow: {
+              '0%': { backgroundPosition: '0% center' },
+              '100%': { backgroundPosition: '100% center' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-1000px 0' },
+              '100%': { backgroundPosition: '1000px 0' }
             }
+          },
+          backdropBlur: {
+            xs: '2px',
           }
         }
       }
     };
   </script>
   <style>
-    @keyframes wave {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(5deg); }
-      50% { transform: rotate(0deg); }
-      75% { transform: rotate(-5deg); }
-      100% { transform: rotate(0deg); }
+    * {
+      scroll-behavior: smooth;
     }
-    .animate-wave {
-      animation: wave 2s ease-in-out infinite;
-      transform-origin: 70% 70%;
-      display: inline-block;
+
+    body {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #E2E8F0;
+      overflow-x: hidden;
     }
-    .fade-on-scroll {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease-out;
+
+    /* Gradient de fond animé */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #0F172A, #1E293B, #0F172A, #1E293B);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -1;
     }
-    .fade-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .ripple {
+
+    /* Effet de grille subtile */
+    .grid-pattern {
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(255, 107, 53, 0.05) 25%, rgba(255, 107, 53, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 107, 53, 0.05) 75%, rgba(255, 107, 53, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(255, 107, 53, 0.05) 25%, rgba(255, 107, 53, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 107, 53, 0.05) 75%, rgba(255, 107, 53, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+    }
+
+    /* Glassmorphism */
+    .glass-effect {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    .glass-effect-strong {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(0, 217, 255, 0.2);
+    }
+
+    /* Boutons premium */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8557 100%);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+    }
+
+    .btn-primary::before {
+      content: '';
       position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.7);
-      transform: scale(0);
-      animation: ripple 600ms linear;
-      pointer-events: none;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.5s ease;
     }
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    /* Badges avec brillance */
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(0, 217, 255, 0.1);
+      border: 1px solid rgba(0, 217, 255, 0.3);
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #00D9FF;
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      background: rgba(0, 217, 255, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+    }
+
+    /* Carte de projet premium */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0, 217, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+      transform: translateY(-8px);
+    }
+
+    /* Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 30px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #FF6B35;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 25px;
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(180deg, #FF6B35, transparent);
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    /* Formulaire */
+    .form-input {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #E2E8F0;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-input:focus {
+      outline: none;
+      background: rgba(30, 41, 59, 0.8);
+      border-color: #00D9FF;
+      box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+    }
+
+    .form-input::placeholder {
+      color: rgba(226, 232, 240, 0.5);
+    }
+
+    /* Section titles avec underline animé */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00D9FF, #FF6B35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 50px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #FF6B35, #00D9FF);
+      border-radius: 2px;
+      animation: slideLeft 0.8s ease-out;
+    }
+
+    @keyframes slideLeft {
+      from {
+        width: 0;
       }
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    .nav-link {
+      position: relative;
+      color: #E2E8F0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #FF6B35;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #FF6B35;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Hero text animation */
+    .hero-text {
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .hero-image {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Skill bar animation */
+    .skill-bar {
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 8px;
+    }
+
+    .skill-progress {
+      background: linear-gradient(90deg, #FF6B35, #FF8557);
+      height: 100%;
+      border-radius: 10px;
+      animation: slideLeft 1s ease-out;
+    }
+
+    /* Floating orbs */
+    .floating-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent);
+      top: -100px;
+      left: -100px;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.1), transparent);
+      bottom: 50px;
+      right: -100px;
+      animation: float 25s ease-in-out infinite reverse;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Scrollbar personnalisée */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(30, 41, 59, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #FF6B35;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF8557;
     }
   </style>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+<body class="relative">
+  <div class="animated-bg"></div>
+  
+  <!-- Floating orbs -->
+  <div class="orb-1"></div>
+  <div class="orb-2"></div>
 
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow">
+  <nav class="navbar fixed top-0 w-full z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:opacity-80 transition">Eren-Geek</a>
+      <a href="#" class="text-2xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-orange-500 hover:opacity-80 transition">
+        ▲ Eren-Geek
+      </a>
+      
+      <div class="hidden md:flex space-x-8">
+        <a href="#about" class="nav-link">À propos</a>
+        <a href="#experience" class="nav-link">Expérience</a>
+        <a href="#skills" class="nav-link">Compétences</a>
+        <a href="#projects" class="nav-link">Projets</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
       <div class="flex items-center gap-4">
-        <div class="hidden md:flex space-x-6 text-lg">
-          <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">À propos</a>
-          <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Compétences</a>
-          <a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projets</a>
-          <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
-        </div>
-        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-          <i class="fas fa-moon dark:hidden"></i>
-          <i class="fas fa-sun hidden dark:block"></i>
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-700 transition" title="Basculer le thème">
+          <i class="fas fa-moon"></i>
         </button>
-        <button id="mobile-menu-button" class="md:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition">
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded transition">
           <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden px-6 py-4 bg-white dark:bg-gray-900 border-t dark:border-gray-700">
-      <a href="#about" class="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition">À propos</a>
-      <a href="#skills" class="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Compétences</a>
-      <a href="#projects" class="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projets</a>
-      <a href="#contact" class="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+
+    <div id="mobile-menu" class="hidden md:hidden px-6 py-4 bg-gray-900 border-t border-cyan-500 border-opacity-20">
+      <a href="#about" class="block py-2 hover:text-orange-500 transition">À propos</a>
+      <a href="#experience" class="block py-2 hover:text-orange-500 transition">Expérience</a>
+      <a href="#skills" class="block py-2 hover:text-orange-500 transition">Compétences</a>
+      <a href="#projects" class="block py-2 hover:text-orange-500 transition">Projets</a>
+      <a href="#contact" class="block py-2 hover:text-orange-500 transition">Contact</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-28 pb-20 md:py-32">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-      <div class="md:w-1/2 fade-on-scroll">
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight">AGBANYO Yawotsè Emile</h1>
-        <h2 class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-400 mt-2 flex items-center">
-          Développeur Full Stack <span class="animate-wave ml-3">👋</span>
-        </h2>
-        <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
-          Étudiant en fin de cycle LPDM à l' Université de kara. Passionné par le développement web & mobile, je cherche un stage pour créer des solutions innovantes et performantes.
-        </p>
-        <div class="mt-8 flex gap-4">
-          <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow hover:shadow-md hover:scale-105 animate-pulse-slow">
-            Me contacter
-          </a>
-          <a href="#projects" class="px-6 py-3 border border-indigo-600 text-indigo-600 dark:text-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-gray-800 transition hover:scale-105">
-            Mes projets
-          </a>
+  <section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="hero-text">
+          <div class="mb-6">
+            <span class="badge">👨‍💻 Développeur Full Stack</span>
+          </div>
+          
+          <h1 class="text-5xl md:text-7xl font-bold font-display leading-tight mb-6">
+            AGBANYO<br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-orange-500 to-pink-500">
+              Yawotsè Emile
+            </span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-xl">
+            Étudiant en fin de cycle <strong>LPDM</strong> à l'Université de Kara. Créateur de solutions web et mobiles innovantes avec une passion pour l'excellence technique et le design.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-12">
+            <a href="#contact" class="btn-primary flex items-center justify-center gap-2">
+              <i class="fas fa-envelope"></i> Me contacter
+            </a>
+            <a href="#projects" class="px-8 py-3 border-2 border-cyan-400 text-cyan-400 rounded-full font-semibold hover:bg-cyan-400 hover:text-slate-900 transition-all duration-300">
+              Voir mes projets
+            </a>
+          </div>
+
+          <div class="flex gap-6">
+            <a href="https://github.com/Emile-zola" target="_blank" rel="noopener" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
         </div>
-        <div class="mt-8 flex gap-4">
-          <a href="https://github.com/Emile-zola" target="_blank" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="#" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i clas
-            This contribution was made on Jul 16
-            Jul 16
-        
-        Loading
-        
-        Seeing something unexpected? Take a look at the GitHub profile guide.
-            2026
-            2025
-            2024
-            2023
-        
-        Footer
-        © 2025 GitHub, Inc.
-        Footer navigation
-        
-            Terms
-            Privacy
-            Security
-            Status
-            Docs
-            This contribution was made on Jul 16
-            Jul 16
-        
-        Loading
-        
-        Seeing something unexpected? Take a look at the GitHub profile guide.
-        
-            2025
-            2024
-            2023
-        
-        Footer
-        © 2025 GitHub, Inc.
-        Footer navigation
-        
-            Terms
-            Privacy
-            Security
-            Status
-            Docs
-            Contact
-        
-        
-            Contact
-        
-        s="fab fa-linkedin"></i>
-          </a>
-          <a href="#" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i class="fab fa-twitter"></i>
-          </a>
+
+        <div class="hero-image hidden md:flex justify-center">
+          <div class="relative w-80 h-80 rounded-2xl overflow-hidden glass-effect-strong p-1 group">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+              alt="AGBANYO Yawotsè Emile"
+              class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+            >
+          </div>
         </div>
       </div>
-      <div class="md:w-1/2 flex justify-center fade-on-scroll">
-        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-indigo-600 dark:border-indigo-400 shadow-xl relative animate-float">
-          <!-- Remplacez par votre photo -->
-          <img src="zola.jpeg" 
-               alt="Photo de AGBANYO Yawotsè Emile" 
-               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-orange-500"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 relative z-10">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="section-title">À propos</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="glass-effect rounded-xl p-8 hover:border-cyan-400 transition-all">
+          <div class="text-4xl mb-4 text-orange-500">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Parcours Académique</h3>
+          <p class="text-gray-300 leading-relaxed">
+            Étudiant passionné en informatique actuellement en fin de cycle <strong>LPDM</strong> à l'Université de Kara. J'ai développé une expertise solide en développement full-stack à travers mes études intensives et mes projets pratiques.
+          </p>
+        </div>
+
+        <div class="glass-effect rounded-xl p-8 hover:border-cyan-400 transition-all">
+          <div class="text-4xl mb-4 text-orange-500">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Mes Objectifs</h3>
+          <p class="text-gray-300 leading-relaxed">
+            Contribuer à des projets technologiques innovants tout en perfectionnant mes compétences. Je recherche un stage stimulant où je peux appliquer mes connaissances et apprendre de professionnels expérimentés.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
-    <div class="container mx-auto px-6 max-w-4xl space-y-6 fade-on-scroll">
-      <h2 class="text-3xl font-bold text-center">À propos de moi</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
-          <h3 class="text-xl font-semibold mb-4 flex items-center"><i class="fas fa-graduation-cap mr-2"></i>Mon parcours</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            Étudiant en informatique passionné par le développement web & Mobile depuis plusieurs années, j'ai acquis des compétences solides en développement front-end et back-end à travers mes études et mes projets personnels.
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 px-6 relative z-10">
+    <div class="container mx-auto max-w-4xl">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Expérience</h2>
+      </div>
+
+      <div class="space-y-8">
+        <div class="timeline-item glass-effect rounded-lg p-8">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold">Développeur Stagiaire</h3>
+            <span class="text-cyan-400 text-sm">2023 - Présent</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-3">Ministère de la Justice - Togo</p>
+          <p class="text-gray-300">
+            Développement d'une application de gestion des réclamations. Stack: Laravel, Vue.js, PostgreSQL. Participation à l'analyse des besoins et à l'implémentation des fonctionnalités critiques.
           </p>
         </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
-          <h3 class="text-xl font-semibold mb-4 flex items-center"><i class="fas fa-bullseye mr-2"></i>Mes objectifs</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            Je souhaite contribuer à des projets innovants tout en perfectionnant mes compétences en développement full stack. Mon objectif à long terme est de devenir expert en développement.
+
+        <div class="timeline-item glass-effect rounded-lg p-8">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold">Projets Personnels & Académiques</h3>
+            <span class="text-cyan-400 text-sm">2022 - Présent</span>
+          </div>
+          <p class="text-orange-500 font-semibold mb-3">Développement Full Stack</p>
+          <p class="text-gray-300">
+            Création de plusieurs applications web et mobiles incluant des systèmes de gestion de données, dashboards, et solutions e-commerce avec authentification et paiements.
           </p>
         </div>
       </div>
@@ -215,36 +573,71 @@
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-20">
-    <div class="container mx-auto px-6 max-w-4xl fade-on-scroll">
-      <h2 class="text-3xl font-bold text-center mb-12">Compétences & Technologies</h2>
-      
-      <div class="mb-12">
-        <h3 class="text-xl font-semibold mb-4">Technologies principales</h3>
-        <div class="flex flex-wrap gap-3 justify-center">
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">PHP</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">Laravel</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">JavaScript</span>
-          <!--span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">Node.js</span-->
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">PostgreSQL</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">Docker</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">HTML5</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">CSS3</span>
-          <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm hover:scale-105 transition-transform">Git</span>
-        </div>
+  <section id="skills" class="py-20 px-6 relative z-10">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Compétences Techniques</h2>
       </div>
-      
-      <div class="space-y-6">
-        <div>
-          <div class="flex justify-between mb-1"><span>Français</span><span>Courant</span></div>
-          <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 95%"></div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="glass-effect rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+            <i class="fas fa-code"></i> Backend
+          </h3>
+          <div class="space-y-2">
+            <div class="badge">PHP / Laravel</div>
+            <div class="badge">Node.js / Express</div>
+            <div class="badge">PostgreSQL</div>
+            <div class="badge">API REST</div>
           </div>
         </div>
-        <div>
-          <div class="flex justify-between mb-1"><span>Anglais</span><span>Intermédiaire</span></div>
-          <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-            <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 75%"></div>
+
+        <div class="glass-effect rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+            <i class="fas fa-paint-brush"></i> Frontend
+          </h3>
+          <div class="space-y-2">
+            <div class="badge">React / Vue.js</div>
+            <div class="badge">JavaScript ES6+</div>
+            <div class="badge">Tailwind CSS</div>
+            <div class="badge">Responsive Design</div>
+          </div>
+        </div>
+
+        <div class="glass-effect rounded-lg p-6">
+          <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+            <i class="fas fa-tools"></i> DevOps
+          </h3>
+          <div class="space-y-2">
+            <div class="badge">Docker</div>
+            <div class="badge">Git / GitHub</div>
+            <div class="badge">Linux</div>
+            <div class="badge">CI/CD Basics</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Skills -->
+      <div class="max-w-2xl mx-auto">
+        <h3 class="text-2xl font-bold mb-8 text-center">Langues</h3>
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between mb-3">
+              <span class="font-semibold">Français</span>
+              <span class="text-cyan-400">Natif</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-3">
+              <span class="font-semibold">Anglais</span>
+              <span class="text-cyan-400">Intermédiaire</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -252,59 +645,88 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-    <div class="container mx-auto px-6 fade-on-scroll">
-      <h2 class="text-3xl font-bold text-center mb-12">Projets récents</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:-translate-y-1">
-          <div class="overflow-hidden rounded-t-lg">
-            <img src="https://picsum.photos/600/400?random=1" alt="Projet 1" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+  <section id="projects" class="py-20 px-6 relative z-10">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Projets Récents</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="relative overflow-hidden h-48 bg-gradient-to-br from-cyan-500 to-blue-600">
+            <img 
+              src="https://images.unsplash.com/photo-1563986768711-b3bab3c8f76e?w=500&h=300&fit=crop" 
+              alt="Digitalisation d'épargne"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            >
+            <div class="absolute inset-0 bg-black/20 hover:bg-black/0 transition-all"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Digitalisation d'épargne</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Plateforme complète de gestion de l'épargne avec dashboard administrateur.
+            <h3 class="text-xl font-bold mb-2">Digitalisation d'Épargne</h3>
+            <p class="text-gray-300 text-sm mb-4">
+              Plateforme complète de gestion d'épargne avec dashboard administrateur avancé et système de reporting.
             </p>
-            <div class="flex flex-wrap gap-2 text-sm mb-4">
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">PHP + JS</span>
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">PostgreSQL</span>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="badge">PHP</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">PostgreSQL</span>
             </div>
-            <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Voir le projet →</a>
+            <a href="#" class="text-orange-500 hover:text-orange-400 font-semibold flex items-center gap-2 group">
+              Voir le projet <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
           </div>
         </div>
-        
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:-translate-y-1">
-          <div class="overflow-hidden rounded-t-lg">
-            <img src="https://picsum.photos/600/400?random=2" alt="Projet 2" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="relative overflow-hidden h-48 bg-gradient-to-br from-orange-500 to-red-600">
+            <img 
+              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop" 
+              alt="Gestion des Réclamations"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            >
+            <div class="absolute inset-0 bg-black/20 hover:bg-black/0 transition-all"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Application Mobile de gestion</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Solution de gestion moderne des Réclamations du Ministère de la Justice All in one.
+            <h3 class="text-xl font-bold mb-2">Gestion des Réclamations</h3>
+            <p class="text-gray-300 text-sm mb-4">
+              Solution complète pour le Ministère de la Justice. Gestion, tracking et reporting des réclamations en temps réel.
             </p>
-            <div class="flex flex-wrap gap-2 text-sm mb-4">
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">Laravel</span>
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">Vue.js</span>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="badge">Laravel</span>
+              <span class="badge">Vue.js</span>
+              <span class="badge">PostgreSQL</span>
             </div>
-            <a href="#" class="text-indigo-600 dark:text-indigo-400 hover:underline">Voir le projet →</a>
+            <a href="#" class="text-orange-500 hover:text-orange-400 font-semibold flex items-center gap-2 group">
+              Voir le projet <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
           </div>
         </div>
-        
-        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:-translate-y-1">
-          <div class="overflow-hidden rounded-t-lg">
-            <img src="https://picsum.photos/600/400?random=3" alt="Projet 3" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="relative overflow-hidden h-48 bg-gradient-to-br from-green-500 to-emerald-600">
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-adf4e565db1d?w=500&h=300&fit=crop" 
+              alt="Immo-Gest"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            >
+            <div class="absolute inset-0 bg-black/20 hover:bg-black/0 transition-all"></div>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">Immo-Gest</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Application de Gestion Immobilière optimisée avec système d'abonnement.
+            <p class="text-gray-300 text-sm mb-4">
+              Plateforme SaaS de gestion immobilière avec système d'abonnement, paiements intégrés et analytics avancés.
             </p>
-            <div class="flex flex-wrap gap-2 text-sm mb-4">
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">Node+sequelize+express</span>
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 rounded-full">Reactjs</span>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="badge">Node.js</span>
+              <span class="badge">React</span>
+              <span class="badge">Stripe</span>
             </div>
-            <a href="immo-app-delta.vercel.app" class="text-indigo-600 dark:text-indigo-400 hover:underline">Voir le projet →</a>
+            <a href="https://immo-app-delta.vercel.app" target="_blank" class="text-orange-500 hover:text-orange-400 font-semibold flex items-center gap-2 group">
+              Voir le projet <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -312,139 +734,243 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-6 max-w-2xl fade-on-scroll">
-      <h2 class="text-3xl font-bold text-center mb-8">Contactez-moi</h2>
-      <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
-        <form class="space-y-4">
-          <div>
-            <label for="name" class="block mb-2">Nom complet</label>
-            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent dark:bg-gray-800 transition-all">
+  <section id="contact" class="py-20 px-6 relative z-10">
+    <div class="container mx-auto max-w-2xl">
+      <div class="text-center mb-16">
+        <h2 class="section-title">Contactez-moi</h2>
+        <p class="text-gray-300 text-lg mt-4">
+          Vous avez un projet intéressant ? N'hésitez pas à me contacter.
+        </p>
+      </div>
+
+      <div class="glass-effect-strong rounded-xl p-8 md:p-12">
+        <form id="contact-form" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block mb-2 font-semibold">Nom complet</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                required
+                class="form-input w-full"
+                placeholder="Votre nom"
+              >
+            </div>
+            <div>
+              <label for="email" class="block mb-2 font-semibold">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                required
+                class="form-input w-full"
+                placeholder="votre@email.com"
+              >
+            </div>
           </div>
+
           <div>
-            <label for="email" class="block mb-2">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent dark:bg-gray-800 transition-all">
+            <label for="subject" class="block mb-2 font-semibold">Sujet</label>
+            <input 
+              type="text" 
+              id="subject" 
+              name="subject"
+              required
+              class="form-input w-full"
+              placeholder="Objet de votre message"
+            >
           </div>
+
           <div>
-            <label for="message" class="block mb-2">Message</label>
-            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent dark:bg-gray-800 transition-all"></textarea>
+            <label for="message" class="block mb-2 font-semibold">Message</label>
+            <textarea 
+              id="message" 
+              name="message"
+              rows="5"
+              required
+              class="form-input w-full resize-none"
+              placeholder="Votre message..."
+            ></textarea>
           </div>
-          <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all mt-4 relative overflow-hidden">
+
+          <button type="submit" class="btn-primary w-full">
             Envoyer le message
           </button>
+
+          <div id="form-status" class="text-center text-sm hidden"></div>
         </form>
+
+        <!-- Direct contact info -->
+        <div class="mt-12 pt-8 border-t border-cyan-500 border-opacity-20">
+          <p class="text-center text-gray-300 mb-6">Ou contactez-moi directement :</p>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="mailto:dev.emile1emile@gmail.com" class="flex items-center gap-3 hover:text-orange-500 transition">
+              <i class="fas fa-envelope text-xl text-orange-500"></i>
+              <span>dev.emile1emile@gmail.com</span>
+            </a>
+            <a href="tel:+22890687799" class="flex items-center gap-3 hover:text-orange-500 transition">
+              <i class="fas fa-phone text-xl text-orange-500"></i>
+              <span>+228 90 68 77 99</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 dark:bg-gray-800 py-16 fade-on-scroll">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="grid md:grid-cols-3 gap-8">
+  <footer class="py-12 px-6 border-t border-cyan-500 border-opacity-10 relative z-10 mt-20">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
         <div>
-          <h3 class="text-xl font-bold mb-4">Eren-Geek</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            Développeur Full Stack passionné par la création de solutions web et mobiles innovantes.
+          <h3 class="text-xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-orange-500 mb-4">
+            ▲ Eren-Geek
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Développeur Full Stack passionné par l'innovation technologique.
           </p>
         </div>
-        
+
         <div>
-          <h3 class="text-xl font-bold mb-4">Liens utiles</h3>
-          <ul class="space-y-2">
-            <li><a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">À propos</a></li>
-            <li><a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projets</a></li>
-            <li><a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
+          <h4 class="font-bold mb-4">Navigation</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#about" class="hover:text-orange-500 transition">À propos</a></li>
+            <li><a href="#skills" class="hover:text-orange-500 transition">Compétences</a></li>
+            <li><a href="#projects" class="hover:text-orange-500 transition">Projets</a></li>
+            <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
           </ul>
         </div>
-        
+
         <div>
-          <h3 class="text-xl font-bold mb-4">Contact</h3>
-          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-            <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> dev.emile1emile@gmail.com</li>
-            <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +228 90 68 77 99</li>
+          <h4 class="font-bold mb-4">Réseaux</h4>
+          <div class="flex gap-4">
+            <a href="https://github.com/Emile-zola" target="_blank" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-2xl hover:text-orange-500 transition-transform hover:scale-125">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold mb-4">Contact Direct</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li class="flex items-center gap-2">
+              <i class="fas fa-envelope text-orange-500"></i>
+              <a href="mailto:dev.emile1emile@gmail.com" class="hover:text-orange-500 transition">Email</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fas fa-phone text-orange-500"></i>
+              <a href="tel:+22890687799" class="hover:text-orange-500 transition">+228 90 68 77 99</a>
+            </li>
           </ul>
         </div>
       </div>
-      
-      <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center">
-        <div class="flex justify-center gap-4 mb-4">
-          <a href="https://github.com/Emile-zola" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="#" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="#" class="text-2xl text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-transform hover:scale-125">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </div>
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-          &copy; 2023 AGBANYO Yawotsè Emile. Tous droits réservés.
-        </p>
+
+      <div class="border-t border-cyan-500 border-opacity-10 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2024 AGBANYO Yawotsè Emile. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
-    // Gestion du thème
+    // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    });
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
+    if (localStorage.theme === 'light' || (!localStorage.theme && !prefersDark)) {
+      document.documentElement.style.colorScheme = 'light';
     }
+    
+    themeToggle.addEventListener('click', () => {
+      if (document.documentElement.style.colorScheme === 'dark') {
+        document.documentElement.style.colorScheme = 'light';
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.style.colorScheme = 'dark';
+        localStorage.theme = 'dark';
+      }
+    });
 
-    // Menu mobile
+    // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    
     mobileMenuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
-      mobileMenuButton.innerHTML = mobileMenu.classList.contains('hidden') ? 
-        '<i class="fas fa-bars text-xl"></i>' : '<i class="fas fa-times text-xl"></i>';
     });
 
-    // Animation au scroll
-    const observer = new IntersectionObserver(entries => {
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        // Simulation - remplacer par vraie intégration (EmailJS, Formspree, etc.)
+        formStatus.textContent = '✅ Message envoyé avec succès ! Je vous répondrai bientôt.';
+        formStatus.classList.remove('hidden', 'text-red-400');
+        formStatus.classList.add('text-green-400');
+
+        contactForm.reset();
+
+        setTimeout(() => {
+          formStatus.classList.add('hidden');
+        }, 5000);
+      });
+    }
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
-
-    // Effet ripple sur les boutons
-    document.querySelectorAll('button, a[href^="#"]').forEach(button => {
-      button.addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
+    document.querySelectorAll('.project-card, .glass-effect').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.8s ease-out';
+      observer.observe(el);
     });
   </script>
 </body>
