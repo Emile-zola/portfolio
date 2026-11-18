@@ -1,937 +1,171 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="AGBANYO Yawotsè Emile">
-  <meta name="description" content="Portfolio de AGBANYO Yawotsè Emile, développeur full stack web et mobile.">
-  <title>Eren-Geek | Développeur Full Stack</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #101113;
-      --muted: #62666f;
-      --paper: #f6f2ea;
-      --panel: #fffaf1;
-      --line: rgba(16, 17, 19, 0.12);
-      --coral: #ff5c35;
-      --cyan: #00a6c8;
-      --lime: #b8e44c;
-      --dark: #18191d;
-      --shadow: 0 24px 80px rgba(16, 17, 19, 0.14);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      background:
-        linear-gradient(120deg, rgba(255, 92, 53, 0.12), transparent 28%),
-        linear-gradient(300deg, rgba(0, 166, 200, 0.16), transparent 34%),
-        var(--paper);
-      color: var(--ink);
-      font-family: "Inter", system-ui, sans-serif;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(246, 242, 234, 0.86);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      width: min(1180px, calc(100% - 32px));
-      min-height: 70px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      letter-spacing: 0;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--ink);
-      background: var(--lime);
-      font-family: "JetBrains Mono", monospace;
-      font-size: 13px;
-      box-shadow: 4px 4px 0 var(--ink);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px;
-      border: 1px solid var(--line);
-      background: rgba(255, 250, 241, 0.72);
-    }
-
-    .nav-links a {
-      padding: 10px 14px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-      transition: color 180ms ease, background 180ms ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.is-active {
-      color: var(--ink);
-      background: var(--lime);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 18px;
-      border: 1px solid var(--ink);
-      background: var(--ink);
-      color: var(--panel);
-      font-weight: 800;
-      box-shadow: 5px 5px 0 var(--coral);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .nav-cta:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 8px 8px 0 var(--coral);
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--ink);
-      background: var(--panel);
-      color: var(--ink);
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    main {
-      isolation: isolate;
-    }
-
-    .section {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 92px 0;
-    }
-
-    .hero {
-      min-height: calc(100svh - 70px);
-      display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
-      align-items: center;
-      gap: 46px;
-      padding-top: 38px;
-      padding-bottom: 70px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-      margin-bottom: 22px;
-      padding: 9px 12px;
-      border: 1px solid var(--ink);
-      background: var(--panel);
-      color: var(--ink);
-      font-family: "JetBrains Mono", monospace;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      box-shadow: 4px 4px 0 var(--cyan);
-    }
-
-    .hero h1 {
-      max-width: 820px;
-      font-size: clamp(48px, 9vw, 112px);
-      line-height: 0.9;
-      font-weight: 900;
-      letter-spacing: 0;
-    }
-
-    .hero h1 span {
-      color: transparent;
-      -webkit-text-stroke: 2px var(--ink);
-      text-shadow: 7px 7px 0 rgba(255, 92, 53, 0.24);
-    }
-
-    .hero-copy {
-      max-width: 680px;
-      margin-top: 24px;
-      color: #343840;
-      font-size: clamp(18px, 2.1vw, 24px);
-      line-height: 1.5;
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 22px;
-      border: 1px solid var(--ink);
-      font-weight: 900;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-    }
-
-    .btn-primary {
-      background: var(--coral);
-      color: #fff;
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .btn-secondary {
-      background: var(--panel);
-      color: var(--ink);
-      box-shadow: 6px 6px 0 var(--cyan);
-    }
-
-    .btn:hover {
-      transform: translate(-2px, -2px);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      max-width: 680px;
-      margin-top: 42px;
-    }
-
-    .stat {
-      border: 1px solid var(--ink);
-      background: rgba(255, 250, 241, 0.78);
-      padding: 16px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 26px;
-      line-height: 1;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .portrait-wrap {
-      position: relative;
-      min-height: 560px;
-      display: grid;
-      place-items: end center;
-    }
-
-    .portrait-card {
-      position: relative;
-      width: min(100%, 410px);
-      min-height: 520px;
-      border: 1px solid var(--ink);
-      background:
-        linear-gradient(135deg, rgba(184, 228, 76, 0.9), rgba(0, 166, 200, 0.5)),
-        var(--panel);
-      box-shadow: 16px 16px 0 var(--ink);
-      overflow: hidden;
-    }
-
-    .portrait-card::before {
-      content: "";
-      position: absolute;
-      inset: 22px;
-      border: 1px solid rgba(16, 17, 19, 0.2);
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 28px 28px;
-    }
-
-    .portrait-card img {
-      position: absolute;
-      inset: auto -60px 0 auto;
-      width: 118%;
-      max-width: none;
-      filter: saturate(1.05) contrast(1.03);
-    }
-
-    .float-note {
-      position: absolute;
-      left: 0;
-      bottom: 56px;
-      width: 230px;
-      border: 1px solid var(--ink);
-      background: var(--dark);
-      color: var(--panel);
-      padding: 18px;
-      box-shadow: 8px 8px 0 var(--coral);
-    }
-
-    .float-note strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--lime);
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .float-note p {
-      color: rgba(255, 250, 241, 0.78);
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
-      align-items: end;
-      gap: 34px;
-      margin-bottom: 34px;
-    }
-
-    .kicker {
-      color: var(--coral);
-      font-family: "JetBrains Mono", monospace;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      margin-top: 10px;
-      font-size: clamp(32px, 5vw, 60px);
-      line-height: 0.95;
-      font-weight: 900;
-      letter-spacing: 0;
-    }
-
-    .section-lead {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.65;
-      font-weight: 600;
-    }
-
-    .about-grid,
-    .skills-grid,
-    .project-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .about-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .skills-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .project-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .panel,
-    .project-card {
-      border: 1px solid var(--ink);
-      background: rgba(255, 250, 241, 0.84);
-      box-shadow: var(--shadow);
-    }
-
-    .panel {
-      padding: 28px;
-    }
-
-    .panel h3,
-    .project-card h3 {
-      margin-bottom: 12px;
-      font-size: 22px;
-      line-height: 1.1;
-      font-weight: 900;
-    }
-
-    .panel p,
-    .project-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      font-weight: 600;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 14px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 170px 1fr;
-      gap: 18px;
-      border: 1px solid var(--ink);
-      background: var(--panel);
-      padding: 24px;
-    }
-
-    .timeline-date {
-      font-family: "JetBrains Mono", monospace;
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 10px;
-      border: 1px solid rgba(16, 17, 19, 0.18);
-      background: #fff;
-      color: #31343b;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .tag.hot {
-      border-color: var(--ink);
-      background: var(--lime);
-      color: var(--ink);
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-
-    .project-card {
-      display: flex;
-      min-height: 100%;
-      flex-direction: column;
-      overflow: hidden;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 10px 10px 0 var(--ink), var(--shadow);
-    }
-
-    .project-visual {
-      min-height: 168px;
-      padding: 18px;
-      display: flex;
-      align-items: flex-end;
-      background:
-        linear-gradient(135deg, rgba(16, 17, 19, 0.72), rgba(16, 17, 19, 0.08)),
-        var(--accent, var(--cyan));
-    }
-
-    .project-visual span {
-      color: #fff;
-      font-family: "JetBrains Mono", monospace;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .project-body {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      padding: 22px;
-    }
-
-    .project-status {
-      width: fit-content;
-      margin-bottom: 14px;
-      padding: 7px 10px;
-      border: 1px solid var(--ink);
-      background: var(--accent, var(--cyan));
-      color: #fff;
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .project-link {
-      margin-top: auto;
-      padding-top: 18px;
-      color: var(--ink);
-      font-weight: 900;
-    }
-
-    .project-link.is-disabled {
-      color: var(--muted);
-      cursor: default;
-    }
-
-    .contact-band {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: center;
-      border: 1px solid var(--ink);
-      background: var(--dark);
-      color: var(--panel);
-      padding: clamp(26px, 5vw, 54px);
-      box-shadow: 14px 14px 0 var(--coral);
-    }
-
-    .contact-band h2 {
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .contact-band p {
-      max-width: 680px;
-      margin-top: 16px;
-      color: rgba(255, 250, 241, 0.72);
-      line-height: 1.7;
-      font-weight: 600;
-    }
-
-    .contact-actions {
-      display: grid;
-      gap: 12px;
-    }
-
-    footer {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 40px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 940px) {
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .nav-links.is-open {
-        position: absolute;
-        top: 70px;
-        left: 16px;
-        right: 16px;
-        display: grid;
-        gap: 4px;
-        padding: 10px;
-        border-color: var(--ink);
-        background: var(--panel);
-        box-shadow: 8px 8px 0 var(--ink);
-      }
-
-      .hero,
-      .section-head,
-      .contact-band {
-        grid-template-columns: 1fr;
-      }
-
-      .portrait-wrap {
-        min-height: 470px;
-        place-items: center;
-      }
-
-      .float-note {
-        left: 14px;
-        bottom: 18px;
-      }
-
-      .about-grid,
-      .skills-grid,
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .section {
-        padding: 64px 0;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 32px;
-      }
-
-      .hero-stats,
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-
-      .portrait-card {
-        min-height: 430px;
-        box-shadow: 10px 10px 0 var(--ink);
-      }
-
-      .float-note {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        width: 100%;
-        margin-top: 18px;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emile Y. AGBANYO — Senior Full-Stack Developer · GEEKIO</title>
+<meta name="description" content="Portfolio d’Emile Y. AGBANYO, Senior Full-Stack Developer au Togo, responsable de GEEKIO. Agoo, microfinance, justice, CTF.">
+<style>
+:root{--bg:#f6f8fa;--fg:#0b1117;--mut:#56626f;--acc:#00935a;--blue:#1d9bf0;--card:rgba(255,255,255,.75);--line:rgba(11,17,23,.12);--glow:0,147,90;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#06080b;--fg:#e8edf2;--mut:#8995a2;--acc:#3dffa0;--card:rgba(14,19,25,.72);--line:rgba(232,237,242,.12);--glow:61,255,160}}
+:root[data-theme="dark"]{--bg:#06080b;--fg:#e8edf2;--mut:#8995a2;--acc:#3dffa0;--card:rgba(14,19,25,.72);--line:rgba(232,237,242,.12);--glow:61,255,160}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+#gl{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+main,header,footer{position:relative;z-index:1}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:18px;align-items:center;padding:14px 5vw;background:var(--card);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav b{margin-right:auto;font-size:14px;letter-spacing:.12em}
+nav a{color:var(--mut);text-decoration:none;font-size:13px}nav a:hover{color:var(--acc)}
+nav button,.btn{font:inherit;cursor:pointer;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:13px;text-decoration:none;display:inline-block;transition:.25s}
+.btn.p{background:var(--acc);color:#04120b;border-color:var(--acc);font-weight:600}
+.btn:hover,nav button:hover{border-color:var(--acc);box-shadow:0 0 24px rgba(var(--glow),.25);transform:translateY(-2px)}
+@media(max-width:720px){nav a{display:none}}
+section{padding:110px 5vw;max-width:1180px;margin:auto}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.tag{color:var(--acc);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+h1{font-size:clamp(40px,8vw,92px);line-height:1.02;margin:.25em 0;letter-spacing:-.03em;display:flex;align-items:center;flex-wrap:wrap;gap:.2em}
+h1 .vb{width:.5em;height:.5em;display:inline-block;filter:drop-shadow(0 0 14px rgba(29,155,240,.55))}
+h2{font-size:clamp(28px,4.5vw,48px);margin:.2em 0 .5em;letter-spacing:-.02em}
+.lead{color:var(--mut);max-width:640px;font-size:18px}
+.cur::after{content:"▌";color:var(--acc);animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;backdrop-filter:blur(10px);transform-style:preserve-3d;transition:transform .2s,border-color .3s,box-shadow .3s;position:relative}
+.card:hover{border-color:var(--acc);box-shadow:0 20px 60px rgba(var(--glow),.12)}
+.card h3{margin:.2em 0}.card p{color:var(--mut);margin:.4em 0}
+.pill{display:inline-block;font-size:11px;padding:3px 10px;border:1px solid var(--line);border-radius:99px;color:var(--mut);margin:2px 4px 2px 0}
+.shot{height:150px;border-radius:12px;margin-bottom:16px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(var(--glow),.18),rgba(29,155,240,.18));display:grid;place-items:center;font-size:12px;color:var(--mut);overflow:hidden;position:relative}
+.shot i{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 11px,rgba(var(--glow),.07) 11px 12px)}
+.num{font-size:clamp(34px,5vw,54px);font-weight:700;color:var(--acc)}
+.rv{opacity:0;transform:translateY(46px) scale(.97);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
+.rv.in{opacity:1;transform:none;filter:none}
+.stars button{background:none;border:0;cursor:pointer;font-size:22px;color:var(--line);padding:0 1px}.stars button.on{color:#f5b301}
+input,select,textarea{width:100%;font:inherit;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin:6px 0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}select option{color:#000}
+.two{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.note{font-size:12px;color:var(--mut)}
+footer{padding:50px 5vw 70px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;color:var(--mut);font-size:13px;background:var(--bg)}
+@media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none;filter:none}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Navigation principale">
-      <a class="brand" href="#top" aria-label="Accueil">
-        <span class="brand-mark">EG</span>
-        <span>Eren-Geek</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="#about">Profil</a>
-        <a href="#experience">Expérience</a>
-        <a href="#skills">Stack</a>
-        <a href="#projects">Projets</a>
-      </div>
-      <a class="nav-cta" href="mailto:dev.emile1@gmail.com">Contact</a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">&#9776;</button>
-    </nav>
-  </header>
+<canvas id="gl" aria-hidden="true"></canvas>
+<nav class="mono"><b>EYA<span style="color:var(--acc)">/</span>GEEKIO</b>
+<a href="#projets">Projets</a><a href="#impact">Impact</a><a href="#avis">Avis</a><a href="#soutien">Soutenir</a>
+<button id="th" aria-label="Changer de thème">◐</button></nav>
 
-  <main id="top">
-    <section class="section hero">
-      <div>
-        <p class="eyebrow">Full stack web et mobile</p>
-        <h1>AGBANYO <span>Yawotsè Emile</span></h1>
-        <p class="hero-copy">
-          Je construis des interfaces nettes, des APIs solides et des prototypes qui vont vite du besoin au produit testable.
-          Portfolio recentré sur le concret : projets récents, statut clair, aucune fausse promesse d'hébergement.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">Voir les projets</a>
-          <a class="btn btn-secondary" href="https://github.com/Emile-zola" target="_blank" rel="noopener">GitHub</a>
-        </div>
-        <div class="hero-stats" aria-label="Indicateurs">
-          <div class="stat">
-            <strong>LPDM</strong>
-            <span>Université de Kara</span>
-          </div>
-          <div class="stat">
-            <strong>3+</strong>
-            <span>Projets récents</span>
-          </div>
-          <div class="stat">
-            <strong>Web</strong>
-            <span>APIs, dashboards, apps</span>
-          </div>
-        </div>
-      </div>
+<header class="hero" style="padding:0 5vw;max-width:1180px;margin:auto">
+<div class="tag mono rv">// Lomé · Togo · root@geekio</div>
+<h1 class="rv">Emile Y. AGBANYO
+<span class="vb" role="img" aria-label="Gestionnaire vérifié" title="Gestionnaire vérifié"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:100%;height:100%"><path fill="#1d9bf0" d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/></svg></span></h1>
+<p class="lead rv"><span class="cur mono" id="typed"></span></p>
+<p class="lead rv">Senior Full-Stack Developer, responsable de <b style="color:var(--fg)">GEEKIO</b> : l’équipe derrière des solutions numériques pour le logement, la microfinance et la justice en Afrique.</p>
+<div class="rv" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn p" href="#projets">Voir les projets</a><a class="btn" href="#soutien">Soutenir la vision</a></div>
+</header>
 
-      <div class="portrait-wrap" aria-label="Portrait">
-        <div class="portrait-card">
-          <img src="zola.jpeg" alt="Portrait de AGBANYO Yawotsè Emile">
-        </div>
-        <div class="float-note">
-          <strong>Disponible stage</strong>
-          <p>Profil junior sérieux, orienté produit, avec une vraie base backend, frontend et mobile.</p>
-        </div>
-      </div>
-    </section>
+<main>
+<section id="geekio"><div class="tag mono rv">01 / GEEKIO</div><h2 class="rv">Une équipe, un signal.</h2>
+<div class="grid">
+<div class="card rv"><h3>Construire</h3><p>Applications web et mobiles robustes, pensées pour les réalités africaines : connexions instables, usages mobiles, paiements locaux.</p></div>
+<div class="card rv"><h3>Sécuriser</h3><p>Pratique des CTF : web, crypto, forensique. La sécurité est intégrée dès la conception, pas ajoutée à la fin.</p></div>
+<div class="card rv"><h3>Impacter</h3><p>Simplifier le logement, l’accès au financement et les démarches de justice pour des milliers de personnes.</p></div>
+</div></section>
 
-    <section class="section" id="about">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Profil</p>
-          <h2 class="section-title">Moins de blabla, plus de clarté.</h2>
-        </div>
-        <p class="section-lead">
-          Développeur full stack en fin de cycle LPDM, habitué à transformer une idée en interface exploitable, modèle de données, API et parcours utilisateur.
-        </p>
-      </div>
-      <div class="about-grid">
-        <article class="panel">
-          <h3>Ce que je livre</h3>
-          <p>Des applications propres, compréhensibles et maintenables : dashboards, workflows de gestion, back offices, prototypes mobiles et intégrations API.</p>
-        </article>
-        <article class="panel">
-          <h3>Ce que je cherche</h3>
-          <p>Un environnement où progresser vite, contribuer à de vrais produits et apprendre avec des équipes qui aiment autant la qualité que l'exécution.</p>
-        </article>
-      </div>
-    </section>
+<section id="projets"><div class="tag mono rv">02 / Projets</div><h2 class="rv">Produits en ligne.</h2>
+<div class="grid">
+<article class="card rv tilt"><div class="shot mono"><i></i>AGOO · capture à ajouter</div><span class="pill">Next.js</span><span class="pill">PWA</span><span class="pill">Mobile</span>
+<h3>Agoo Africa</h3><p>Plateforme de logement et de gestion locative au Togo : trouver une chambre, un appartement ou une résidence, suivre sa location, ses échanges, paiements et quittances. Locataires, propriétaires, démarcheurs et gestionnaires réunis.</p>
+<a class="btn p" href="https://agooafrica.vercel.app/" target="_blank" rel="noopener">Ouvrir l’application ↗</a>
+<div class="stars" data-pid="agoo" style="margin-top:12px"></div><div class="note" data-avg="agoo">Note : —</div></article>
+<article class="card rv tilt"><div class="shot mono"><i></i>Microfinance · bientôt</div><span class="pill">Fintech</span><span class="pill">Mobile</span>
+<h3>Plateforme de microfinance</h3><p>Outils de gestion de crédits et d’épargne pour institutions de microfinance. Détails à venir.</p>
+<div class="stars" data-pid="micro" style="margin-top:12px"></div><div class="note" data-avg="micro">Note : —</div></article>
+<article class="card rv tilt"><div class="shot mono"><i></i>Justice · bientôt</div><span class="pill">GovTech</span><span class="pill">Mobile</span>
+<h3>Gestion des réclamations</h3><p>Application mobile pour le Ministère de la Justice : dépôt et suivi des réclamations des citoyens. Détails à venir.</p>
+<div class="stars" data-pid="justice" style="margin-top:12px"></div><div class="note" data-avg="justice">Note : —</div></article>
+</div></section>
 
-    <section class="section" id="experience">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Expérience</p>
-          <h2 class="section-title">Des projets utiles, pas juste décoratifs.</h2>
-        </div>
-        <p class="section-lead">
-          <!--La timeline met en avant les travaux récents et assume leur statut quand ils ne sont pas encore publics.-->
-        </p>
-      </div>
-      <div class="timeline">
-        <article class="timeline-item">
-          <p class="timeline-date">2026 - Présent</p>
-          <div>
-            <h3>Gestion des réclamations</h3>
-            <p>Application pour organiser, suivre et traiter les réclamations avec des profils utilisateurs, tableaux de bord et reporting.</p>
-            <div class="tag-row">
-              <span class="tag hot">Prototype non hébergé</span>
-              <span class="tag">Django</span>
-              <span class="tag">Flutter</span>
-              <span class="tag">PostgreSQL</span>
-            </div>
-          </div>
-        </article>
-        <article class="timeline-item">
-          <p class="timeline-date">Recent</p>
-          <div>
-            <h3>Digitalisation d'épargne</h3>
-            <p>Solution de gestion d'épargne avec logique métier, suivi des opérations et espace d'administration.</p>
-            <div class="tag-row">
-              <span class="tag hot">Prototype local</span>
-              <span class="tag">PHP</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">SQL</span>
-            </div>
-          </div>
-        </article>
-        <article class="timeline-item">
-          <p class="timeline-date">Recent</p>
-          <div>
-            <h3>Immo-Gest</h3>
-            <p>Plateforme de gestion immobilière avec annonces, suivi et parcours SaaS. Version de démonstration disponible.</p>
-            <div class="tag-row">
-              <span class="tag hot">Démo hébergée</span>
-              <span class="tag">React</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Stripe</span>
-              <span class="tag">Mixx & Flooz</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+<section id="impact"><div class="tag mono rv">03 / Impact Agoo</div><h2 class="rv">Vérifié, donc fiable.</h2>
+<p class="lead rv">Sur Agoo, les gestionnaires obtiennent le badge <span style="color:var(--blue)">bleu vérifié</span> après contrôle de leur identité et de leurs biens. Résultat : plus de confiance et plus de locations conclues.</p>
+<div class="grid" style="margin-top:30px">
+<div class="card rv"><div class="num" data-n="0">5+</div><p>Gestionnaires vérifiés</p></div>
+<div class="card rv"><div class="num" data-n="0">9+</div><p>Logements contrôlés</p></div>
+<div class="card rv"><div class="num" data-n="0">80%</div><p>% de gain de confiance</p></div>
+<!-- </div><p class="note rv">Chiffres à remplacer par les valeurs réelles : modifie data-n dans les trois blocs ci-dessus.</p></section> -->
 
-    <section class="section" id="skills">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Stack</p>
-          <h2 class="section-title">Une base full stack compacte.</h2>
-        </div>
-        <p class="section-lead">
-          Technologies utilisées sur projets académiques, personnels et prototypes récents.
-        </p>
-      </div>
-      <div class="skills-grid">
-        <article class="panel">
-          <h3>Backend</h3>
-          <div class="skill-list">
-            <span class="tag">PHP</span>
-            <span class="tag">Laravel</span>
-            <span class="tag">Django</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">REST API</span>
-          </div>
-        </article>
-        <article class="panel">
-          <h3>Frontend</h3>
-          <div class="skill-list">
-            <span class="tag">React</span>
-            <span class="tag">Vue.js</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Tailwind</span>
-            <span class="tag">Responsive UI</span>
-          </div>
-        </article>
-        <article class="panel">
-          <h3>Mobile et outils</h3>
-          <div class="skill-list">
-            <span class="tag">Flutter</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">Git</span>
-            <span class="tag">Linux</span>
-          </div>
-        </article>
-      </div>
-    </section>
+<section id="ctf"><div class="tag mono rv">04 / CTF</div><h2 class="rv">Je teste aussi mes limites.</h2>
+<p class="lead rv">Compétitions CTF, recherche de failles et partage des méthodes. Ajoute ici ton profil CTFtime, tes writeups et tes classements.</p></section>
 
-    <section class="section" id="projects">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Projets récents</p>
-          <h2 class="section-title">Sélection courte, statut honnête.</h2>
-        </div>
-        <p class="section-lead">
-          <!--Les projets non déployés restent visibles comme prototypes : c'est plus professionnel que des liens vides.-->
-        </p>
-      </div>
-      <div class="project-grid">
-        <article class="project-card" style="--accent: #00a6c8;">
-          <div class="project-visual"><span>Workflow public</span></div>
-          <div class="project-body">
-            <p class="project-status">Prototype non hébergé</p>
-            <h3>Gestion des réclamations</h3>
-            <p>Back office de suivi, traitement et reporting pour structurer les réclamations et garder une trace claire des actions.</p>
-            <div class="tag-row">
-              <span class="tag">Django</span>
-              <span class="tag">Flutter</span>
-              <span class="tag">PostgreSQL</span>
-            </div>
-            <span class="project-link is-disabled">Lien privé pour le moment</span>
-          </div>
-        </article>
-        <article class="project-card" style="--accent: #ff5c35;">
-          <div class="project-visual"><span>Finance locale</span></div>
-          <div class="project-body">
-            <p class="project-status">Prototype local</p>
-            <h3>Digitalisation d'épargne</h3>
-            <p>Outil de gestion des opérations d'épargne, pensé pour simplifier le suivi, les tableaux et les décisions administrateur.</p>
-            <div class="tag-row">
-              <span class="tag">PHP</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">SQL</span>
-            </div>
-            <span class="project-link is-disabled">Non déployé</span>
-          </div>
-        </article>
-        <article class="project-card" style="--accent: #2d8f5d;">
-          <div class="project-visual"><span>SaaS immobilier</span></div>
-          <div class="project-body">
-            <p class="project-status">Démo en ligne</p>
-            <h3>Immo-Gest</h3>
-            <p>Gestion immobilière avec expérience SaaS, espace utilisateur et base pour les abonnements et paiements.</p>
-            <div class="tag-row">
-              <span class="tag">React</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Stripe</span>
-            </div>
-            <a class="project-link" href="https://immo-app-delta.vercel.app" target="_blank" rel="noopener">Ouvrir la démo</a>
-          </div>
-        </article>
-      </div>
-    </section>
+<section id="avis"><div class="tag mono rv">05 / Témoignages</div><h2 class="rv">Ils en parlent.</h2>
+<div class="two"><div id="tl" class="grid" style="grid-template-columns:1fr"><div class="card rv"><p>« Exemple de témoignage : remplace-le par un vrai avis de client ou de partenaire. »</p><b>Nom · Fonction</b></div></div>
+<div class="card rv"><h3>Laisser un avis</h3><input id="rn" placeholder="Votre nom" maxlength="60"><textarea id="rt" rows="4" placeholder="Votre témoignage" maxlength="400"></textarea><button class="btn p" id="rs">Publier</button><div class="note" id="rm"></div></div></div></section>
 
-    <section class="section" id="contact">
-      <div class="contact-band">
-        <div>
-          <p class="kicker">Contact</p>
-          <h2>On construit quelque chose de propre ?</h2>
-          <p>Disponible pour stage, collaboration junior ou projet prototype. Le plus simple : un message direct avec le contexte, les objectifs et le délai.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:dev.emile1emile@gmail.com">Envoyer un email</a>
-          <a class="btn btn-secondary" href="tel:+22890687799">+228 90 68 77 99</a>
-        </div>
-      </div>
-    </section>
-  </main>
+<section id="soutien"><div class="tag mono rv">06 / Soutien</div><h2 class="rv">Croyez en la vision ? Construisons-la ensemble.</h2>
+<p class="lead rv">Je cherche des financeurs, sponsors et partenaires pour faire grandir GEEKIO et ses solutions. Choisissez votre profil : le message se prépare tout seul, puis s’envoie sur WhatsApp.</p>
+<div class="two" style="margin-top:30px"><div class="card rv"><select id="wt"><option value="sponsor">Sponsor</option><option value="financeur">Financeur / Investisseur</option><option value="partenaire">Partenaire technique</option><option value="mentor">Mentor / Conseil</option><option value="autre">Autre</option></select>
+<input id="wn" placeholder="Votre nom ou organisation"><input id="wc" placeholder="Votre email ou téléphone"><textarea id="wm" rows="3" placeholder="Votre message (optionnel)"></textarea></div>
+<div class="card rv"><div class="tag mono">Aperçu du message</div><textarea id="wp" rows="9"></textarea><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn p" id="ws">Envoyer sur WhatsApp</button><button class="btn" id="wcp">Copier</button></div><div class="note" id="wi"></div></div></div></section>
+</main></div><p class="note rv">Chiffres à remplacer par les valeurs réelles : modifie data-n dans les trois blocs ci-dessus.</p></section> -->
 
-  <footer>
-    <p>© 2026 AGBANYO Yawotsè Emile</p>
-    <p>Eren-Geek | Portfolio statique GitHub Pages</p>
-  </footer>
 
-  <script>
-    const menuToggle = document.querySelector("#menu-toggle");
-    const navLinks = document.querySelector("#nav-links");
+<footer><span class="mono">© 2026 Emile Y. AGBANYO · GEEKIO · Togo</span><span class="mono">VISITEURS : <b id="vc" style="color:var(--acc)">…</b></span></footer>
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("is-open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    const sections = [...document.querySelectorAll("main section[id]")];
-    const links = [...document.querySelectorAll(".nav-links a")];
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
-        });
-      });
-    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
-
-    sections.forEach((section) => observer.observe(section));
-  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const WA="22890687799"; // ← remplace par ton numéro WhatsApp (indicatif + numéro, sans +)
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* thème */
+$("#th").onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=d?"light":"dark";col()};
+/* typing */
+const ph=["Je conçois, sécurise et déploie.","Logement · Microfinance · Justice.","Développeur le jour, hacker éthique la nuit."];let pi=0,ci=0,del=0;
+(function ty(){const t=$("#typed"),s=ph[pi];t.textContent=s.slice(0,ci);if(!del&&ci++===s.length){del=1;return setTimeout(ty,1600)}if(del&&ci--===0){del=0;pi=(pi+1)%ph.length}setTimeout(ty,del?25:55)})();
+/* reveal */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+$$(".rv").forEach((e,i)=>{e.style.transitionDelay=(i%4)*80+"ms";io.observe(e)});
+/* compteurs */
+const co=new IntersectionObserver(e=>e.forEach(x=>{if(!x.isIntersecting)return;const el=x.target,n=+el.dataset.n;let v=0;const st=()=>{v+=Math.max(1,n/50);if(v>=n){el.textContent=n;return}el.textContent=Math.floor(v);requestAnimationFrame(st)};st();co.unobserve(el)}),{threshold:.5});
+$$(".num").forEach(e=>co.observe(e));
+/* tilt 3D */
+$$(".tilt").forEach(c=>{c.onmousemove=e=>{if(RM)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateZ(8px)`};c.onmouseleave=()=>c.style.transform=""});
+/* scène 3D */
+let sc,cam,rd,grp,mat,pm,mx=0,my=0;
+function col(){if(!mat)return;const c=new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue("--acc").trim());mat.color=c;pm.color=c}
+try{const cv=$("#gl");rd=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});rd.setPixelRatio(Math.min(devicePixelRatio,2));sc=new THREE.Scene();cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=7;grp=new THREE.Group();sc.add(grp);
+mat=new THREE.MeshBasicMaterial({wireframe:true,transparent:true,opacity:.45});
+grp.add(new THREE.Mesh(new THREE.IcosahedronGeometry(2.1,1),mat));
+const inner=new THREE.Mesh(new THREE.TorusKnotGeometry(.9,.22,120,12),mat);grp.add(inner);
+const g=new THREE.BufferGeometry(),N=700,p=new Float32Array(N*3);for(let i=0;i<N*3;i++)p[i]=(Math.random()-.5)*26;g.setAttribute("position",new THREE.BufferAttribute(p,3));
+pm=new THREE.PointsMaterial({size:.04,transparent:true,opacity:.7});const pts=new THREE.Points(g,pm);sc.add(pts);col();
+const rs=()=>{rd.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()};rs();addEventListener("resize",rs);
+addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const tick=()=>{const s=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);if(!RM){grp.rotation.y+=.003;grp.rotation.x+=.0015;pts.rotation.y+=.0006}
+grp.rotation.y+=(mx*.6-0)*.01;grp.position.x+=((innerWidth>800?2.4:0)*Math.cos(s*Math.PI*3)-grp.position.x)*.05;grp.position.y+=((s*-3+my*-.6)-grp.position.y)*.05;grp.scale.setScalar(1+s*.6);inner.rotation.z+=.01;cam.position.z=7-s*2;rd.render(sc,cam);requestAnimationFrame(tick)};tick()}catch(e){}
+/* données partagées (db si disponible, sinon local) */
+const lk=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}},ls=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let db=null,uid="local";
+const esc=(el,t)=>{el.textContent=t;return el};
+async function init(){try{db=await claude.use("db");const u=await claude.use("user");if(u)uid=await u.id()}catch(e){db=null}
+ visits();ratings();reviews()}
+async function visits(){const el=$("#vc");if(!db){el.textContent="—";return}try{await db.collection("visits").doc(uid).set({t:Date.now()});el.textContent=(await db.collection("visits").get()).size}catch(e){el.textContent="—"}}
+async function ratings(){const pids=["agoo","micro","justice"];let all=[];if(db){try{all=(await db.collection("ratings").get()).docs.map(d=>d.data())}catch(e){}}
+ const mine=lk("mine")||{};
+ pids.forEach(p=>{const box=$(`.stars[data-pid="${p}"]`);box.innerHTML="";for(let i=1;i<=5;i++){const b=document.createElement("button");b.textContent="★";b.setAttribute("aria-label",i+" étoiles");b.onclick=async()=>{mine[p]=i;ls("mine",mine);if(db){try{await db.collection("ratings").doc(p+"_"+uid).set({pid:p,v:i})}catch(e){}}all=all.filter(a=>!(a.pid===p&&a.u===uid));all.push({pid:p,v:i,u:uid});draw(p)};box.appendChild(b)}draw(p)});
+ function draw(p){const r=all.filter(a=>a.pid===p),m=mine[p]||0;$$(`.stars[data-pid="${p}"] button`).forEach((b,i)=>b.classList.toggle("on",i<m));$(`[data-avg="${p}"]`).textContent=r.length?`Note : ${(r.reduce((s,a)=>s+a.v,0)/r.length).toFixed(1)}/5 · ${r.length} vote(s)`:"Note : soyez le premier à noter"}}
+async function reviews(){const box=$("#tl");let list=lk("rev")||[];if(db){try{list=(await db.collection("reviews").get()).docs.map(d=>d.data()).sort((a,b)=>b.t-a.t)}catch(e){}}
+ if(list.length){box.innerHTML="";list.slice(0,6).forEach(r=>{const c=document.createElement("div");c.className="card in";const p=document.createElement("p");p.textContent="« "+r.text+" »";const b=document.createElement("b");b.textContent=r.name;c.append(p,b);box.appendChild(c)})}}
+$("#rs").onclick=async()=>{const n=$("#rn").value.trim(),t=$("#rt").value.trim();if(!n||!t){$("#rm").textContent="Merci de remplir les deux champs.";return}const r={name:n,text:t,t:Date.now()};
+ try{if(db)await db.collection("reviews").add(r);else ls("rev",[r,...(lk("rev")||[])]);$("#rm").textContent="Merci pour votre avis !";$("#rn").value=$("#rt").value="";reviews()}catch(e){$("#rm").textContent="Envoi impossible pour le moment."}};
+init();
+/* WhatsApp */
+const T={sponsor:"souhaite sponsoriser votre vision et les solutions GEEKIO",financeur:"souhaite discuter d’un financement / investissement dans GEEKIO et ses produits (Agoo, microfinance, justice)",partenaire:"propose un partenariat technique avec GEEKIO",mentor:"souhaite vous accompagner (mentorat / conseil)",autre:"souhaite vous contacter"};
+function msg(){const t=$("#wt").value,n=$("#wn").value.trim()||"[nom]",c=$("#wc").value.trim()||"[contact]",m=$("#wm").value.trim();
+ $("#wp").value=`Bonjour Emile,\n\nJe suis ${n} et je ${T[t]}.\n`+(t==="financeur"?"Je souhaite connaître vos besoins de financement et votre feuille de route.\n":t==="sponsor"?"Je souhaite savoir quels types de soutien vous recherchez.\n":"")+(m?`\n${m}\n`:"")+`\nContact : ${c}\n\nMessage envoyé depuis votre portfolio.`}
+["#wt","#wn","#wc","#wm"].forEach(s=>$(s).oninput=msg);msg();
+$("#ws").onclick=()=>{window.open(`https://wa.me/${WA}?text=${encodeURIComponent($("#wp").value)}`,"_blank","noopener");$("#wi").textContent="WhatsApp s’ouvre : il ne reste qu’à cliquer sur Envoyer."};
+$("#wcp").onclick=async()=>{try{await navigator.clipboard.writeText($("#wp").value);$("#wi").textContent="Message copié."}catch(e){$("#wp").select();$("#wi").textContent="Sélectionné : copie-le manuellement."}};
+</script>
 </body>
 </html>
