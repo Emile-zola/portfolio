@@ -38,11 +38,9 @@ h2{font-size:clamp(28px,4.5vw,48px);margin:.2em 0 .5em;letter-spacing:-.02em}
 .pill{display:inline-block;font-size:11px;padding:3px 10px;border:1px solid var(--line);border-radius:99px;color:var(--mut);margin:2px 4px 2px 0}
 .shot{height:150px;border-radius:12px;margin-bottom:16px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(var(--glow),.18),rgba(29,155,240,.18));display:grid;place-items:center;font-size:12px;color:var(--mut);overflow:hidden;position:relative}
 .shot i{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 11px,rgba(var(--glow),.07) 11px 12px)}
-<<<<<<< HEAD
-=======
+
 .shot.agoo{background:#fff;padding:22px}
 .shot.agoo img{width:min(100%,260px);height:100%;object-fit:contain;position:relative;z-index:1}
->>>>>>> f7b7d4d (apercus du landpage correcteed)
 .num{font-size:clamp(34px,5vw,54px);font-weight:700;color:var(--acc)}
 .rv{opacity:0;transform:translateY(46px) scale(.97);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
 .rv.in{opacity:1;transform:none;filter:none}
@@ -99,17 +97,11 @@ footer{padding:50px 5vw 70px;border-top:1px solid var(--line);display:flex;flex-
 <section id="impact"><div class="tag mono rv">03 / Impact Agoo</div><h2 class="rv">Vérifié, donc fiable.</h2>
 <p class="lead rv">Sur Agoo, les gestionnaires obtiennent le badge <span style="color:var(--blue)">bleu vérifié</span> après contrôle de leur identité et de leurs biens. Résultat : plus de confiance et plus de locations conclues.</p>
 <div class="grid" style="margin-top:30px">
-<<<<<<< HEAD
-<div class="card rv"><div class="num" data-n="0">5+</div><p>Gestionnaires vérifiés</p></div>
-<div class="card rv"><div class="num" data-n="0">9+</div><p>Logements contrôlés</p></div>
-<div class="card rv"><div class="num" data-n="0">80%</div><p>% de gain de confiance</p></div>
-<!-- </div><p class="note rv">Chiffres à remplacer par les valeurs réelles : modifie data-n dans les trois blocs ci-dessus.</p></section> -->
-=======
+
 <div class="card rv"><div class="num" data-n="5+">5+</div><p>Gestionnaires vérifiés</p></div>
 <div class="card rv"><div class="num" data-n="9+">9+</div><p>Logements contrôlés</p></div>
 <div class="card rv"><div class="num" data-n="80%">80%</div><p>% de gain de confiance</p></div>
 </div></section>
->>>>>>> f7b7d4d (apercus du landpage correcteed)
 
 <section id="ctf"><div class="tag mono rv">04 / CTF</div><h2 class="rv">Je teste aussi mes limites.</h2>
 <p class="lead rv">Compétitions CTF, recherche de failles et partage des méthodes. Ajoute ici ton profil CTFtime, tes writeups et tes classements.</p></section>
@@ -123,17 +115,11 @@ footer{padding:50px 5vw 70px;border-top:1px solid var(--line);display:flex;flex-
 <div class="two" style="margin-top:30px"><div class="card rv"><select id="wt"><option value="sponsor">Sponsor</option><option value="financeur">Financeur / Investisseur</option><option value="partenaire">Partenaire technique</option><option value="mentor">Mentor / Conseil</option><option value="autre">Autre</option></select>
 <input id="wn" placeholder="Votre nom ou organisation"><input id="wc" placeholder="Votre email ou téléphone"><textarea id="wm" rows="3" placeholder="Votre message (optionnel)"></textarea></div>
 <div class="card rv"><div class="tag mono">Aperçu du message</div><textarea id="wp" rows="9"></textarea><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn p" id="ws">Envoyer sur WhatsApp</button><button class="btn" id="wcp">Copier</button></div><div class="note" id="wi"></div></div></div></section>
-<<<<<<< HEAD
-</main></div><p class="note rv">Chiffres à remplacer par les valeurs réelles : modifie data-n dans les trois blocs ci-dessus.</p></section> -->
 
-
-<footer><span class="mono">© 2026 Emile Y. AGBANYO · GEEKIO · Togo</span><span class="mono">VISITEURS : <b id="vc" style="color:var(--acc)">…</b></span></footer>
-=======
 </main>
 
 
 <footer><span class="mono">© 2026 Emile Y. AGBANYO · GEEKIO · Togo</span><span class="mono">VISITEURS UNIQUES : <b id="vc" style="color:var(--acc)">Chargement…</b></span></footer>
->>>>>>> f7b7d4d (apercus du landpage correcteed)
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -168,13 +154,7 @@ const tick=()=>{const s=scrollY/Math.max(1,document.body.scrollHeight-innerHeigh
 grp.rotation.y+=(mx*.6-0)*.01;grp.position.x+=((innerWidth>800?2.4:0)*Math.cos(s*Math.PI*3)-grp.position.x)*.05;grp.position.y+=((s*-3+my*-.6)-grp.position.y)*.05;grp.scale.setScalar(1+s*.6);inner.rotation.z+=.01;cam.position.z=7-s*2;rd.render(sc,cam);requestAnimationFrame(tick)};tick()}catch(e){}
 /* données partagées (db si disponible, sinon local) */
 const lk=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}},ls=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-<<<<<<< HEAD
-let db=null,uid="local";
-const esc=(el,t)=>{el.textContent=t;return el};
-async function init(){try{db=await claude.use("db");const u=await claude.use("user");if(u)uid=await u.id()}catch(e){db=null}
- visits();ratings();reviews()}
-async function visits(){const el=$("#vc");if(!db){el.textContent="—";return}try{await db.collection("visits").doc(uid).set({t:Date.now()});el.textContent=(await db.collection("visits").get()).size}catch(e){el.textContent="—"}}
-=======
+
 let db=null,uid=null;
 const esc=(el,t)=>{el.textContent=t;return el};
 async function visits(){const el=$("#vc");if(!db||!uid){el.textContent="Indisponible";console.warn("Compteur indisponible : aucun backend public ni identifiant visiteur n’est configuré.");return}
@@ -182,7 +162,6 @@ async function visits(){const el=$("#vc");if(!db||!uid){el.textContent="Indispon
  catch(e){console.error("Chargement du compteur de visiteurs impossible :",e);el.textContent="Indisponible"}}
 async function init(){try{db=await claude.use("db");const u=await claude.use("user");if(u)uid=await u.id()}catch(e){db=null}
  ratings();reviews();visits()}
->>>>>>> f7b7d4d (apercus du landpage correcteed)
 async function ratings(){const pids=["agoo","micro","justice"];let all=[];if(db){try{all=(await db.collection("ratings").get()).docs.map(d=>d.data())}catch(e){}}
  const mine=lk("mine")||{};
  pids.forEach(p=>{const box=$(`.stars[data-pid="${p}"]`);box.innerHTML="";for(let i=1;i<=5;i++){const b=document.createElement("button");b.textContent="★";b.setAttribute("aria-label",i+" étoiles");b.onclick=async()=>{mine[p]=i;ls("mine",mine);if(db){try{await db.collection("ratings").doc(p+"_"+uid).set({pid:p,v:i})}catch(e){}}all=all.filter(a=>!(a.pid===p&&a.u===uid));all.push({pid:p,v:i,u:uid});draw(p)};box.appendChild(b)}draw(p)});
